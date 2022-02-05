@@ -3,6 +3,10 @@
 const choices = ['rock', 'paper', 'scissors']
 function game() {
     playRound();
+    playRound();
+    playRound();
+    playRound();
+    playRound();
 }
 
 function playRound() {
