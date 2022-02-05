@@ -1,17 +1,17 @@
-const choices = ['rock', 'paper', 'scissors'] 
+const choices = ['rock', 'paper', 'scissors']; 
 const winners = [];
 
 function game() {
-   for (let i = 0; i <= 5; i++) {
+   for (let i = 1; i <= 5; i++) {
        playRound(i);
    }
    document.querySelector("button").textContent = "Play new game";
-   logwins();
+   logWins();
 }
 
 function playRound(round) {
     const playerSelection = playerChoice();
-    const computerSelection = playerChoice();
+    const computerSelection = computerChoice();
     const winner = checkWinner(playerSelection,computerSelection);
     winners.push(winner);    
     logRound(playerSelection,computerSelection,winner,round);
@@ -28,7 +28,7 @@ function playerChoice() {
         input = prompt(
             "Type Rock, Paper or Scissors.Spelling needs to be exact, but capitalization doesnt matter"
             );
-    while(input == null){
+    while(input == null) {
         input = prompt("Type Rock, Paper or Scissors");
     }
         input = input.toLowerCase();
@@ -38,16 +38,16 @@ function playerChoice() {
 }
 
 function computerChoice() {
-    return choices[Math.floor(Math.random() * choices.length)];
+    return choices[Math.floor(Math.random() *choices.length)];
 }
 
-function validateInput(choice) {
+function validateInput(choices) {
     return choices.includes(choices);
 }
 
 function checkWinner(choiceP, choiceC) {
     if (choiceP === choiceC) {
-        return "Tie";
+         return "Tie";
     } else if (
     (choiceP === "rock" && choiceC == "scissors") || 
     (choiceP === "paper" && choiceC == "rock") ||
@@ -56,16 +56,16 @@ function checkWinner(choiceP, choiceC) {
         return "Player";
     } else {
         return "Computer";
-    }
+    }console.log(checkWinner);
 }
 
  function logwins() {
-     let playerwins = winners.filter((item) => item == "player").length;
-     let computerwins = winners.filter((item) => item == "computer").length;
-     let ties = winners.filter((item) => item == "tie").length;
+     let playerWins = winners.filter((item) => item == "Player").length;
+     let computerWins = winners.filter((item) => item == "Computer").length;
+     let ties = winners.filter((item) => item == "Tie").length;
      console.log("Results:");
-     console.log("Player wins:", playerwins);
-     console.log("Computer wins:", computerwins);
+     console.log("Player wins:", playerWins);
+     console.log("Computer wins:", computerWins);
      console.log("Ties:", ties);
  }
 
@@ -74,6 +74,6 @@ function checkWinner(choiceP, choiceC) {
       console.log("Player Chose:",playerChoice);
       console.log("Computer Chose:",computerChoice);
       console.log(winner, "won the Round");
-      console.log("-----------------------------------------------");
+      console.log("-----------------------------");
   }
 
