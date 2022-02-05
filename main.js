@@ -1,38 +1,39 @@
+const choices = ['rock', 'paper', 'scissors'] 
+const winners = [];
 
-
-const choices = ['rock', 'paper', 'scissors']
 function game() {
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
+   for (let i = 0; i <= 5; i++) {
+       playRound();
+   }
+   logwins();
 }
 
 function playRound() {
     const playerSelection = playerChoice();
     const computerSelection = playerChoice();
     const winner = checkWinner(playerSelection,computerSelection);
-    console.log(winner);
-    }
+    winners.push(winner);    
+    logRound(playerSelection,computerSelection,winner)
+}
 
 function playerChoice() {
-    let input = prompt("Type Rock, Paper or Scissors");}
-        while (input == null){
-        input = prompt("Type Rock, Paper or Scissors");
+    let input = prompt("Type Rock, Paper, or Scissors");
+        while (input == null) {
+        input = prompt("Type Rock, Paper, or Scissors");
     }
     input = input.toLowerCase();
     let check = validateInput(input);
     while (check == false) {
-        input = prompt("Type Rock, Paper or Scissors.Spelling needs to be exact, but capitalization doesnt matter");
+        input = prompt(
+            "Type Rock, Paper or Scissors.Spelling needs to be exact, but capitalization doesnt matter"
+            );
     while(input == null){
         input = prompt("Type Rock, Paper or Scissors");
+    }
         input = input.toLowerCase();
     let check = validateInput(input);
-        
-        console.log(input)
     }
-    
+    return input; 
 }
 
 function computerChoice() {
@@ -49,11 +50,27 @@ function checkWinner(choiceP, choiceC) {
     } else if((choiceP === "rock" && choiceC == "scissors") || 
     (choiceP === "paper" && choiceC == "rock") ||
     (choiceP === "scissors" && choiceC == "paper")) {
-        return 'Player';
+        return "Player";
     } else {
-        return 'Computer';
+        return "Computer";
     }
 }
 
+ function logwins(){
+     let playerwins = winners.filter(item => item == "player").length;
+     let computerwins = winners.filter(item => item == "computer").length;
+     let ties = winners.filter(item => item == "tie").length;
+     console.log("Results");
+     console.log("Player wins", playerwins);
+     console.log("Computer wins", computerwins);
+     console.log("Ties", ties);
+ }
+
+  function logRound(playerChoice,computerChoice,winner,round){
+    console.log('Round:',round)
+      console.log('Player Chose:',playerChoice)
+      console.log('Computer Chose:',computerChoice)
+      console.log(winner, 'won the Round')
+  }
 game();
 
